@@ -1,7 +1,9 @@
 """
-This program records the domain name (instead of the address) where the message
-was sent from instead of who the mail came from (i.e., the whole email address).
- At the end of the program, print out the contents of your dictionary.
+Add code to Exercise 3 to figure out who has the most messages in the file.
+
+After all the data has been read and the dictionary has been created,
+look through the dictionary using a maximum loop (see Section [maximumloop])
+to find who has the most messages and print how many messages the person has.
 """
 #file name input by user
 file_name = input("Enter the file name: ")
@@ -11,18 +13,16 @@ except:
     print("Can't open ", file_name)
     quit()
 
-counts = dict()
-
+counts = dict ()
 for line in fhand:
-    #split at the space
-    words = line.split()
-
-    if len(words) <2 or words[0] != "From":
+    words  = line.split()
+    #consider only lists with "From" at 0 and up to 2 elements
+    if len(words) < 2 or words[0] != "From" :
         continue
     else:
-        #split at '@''
-        domains = words[1].split('@')
-        #use the second string from the list 'domain' as key of the dictionary
-        counts[domains[1]] = counts.get(domains[1],0)+1
+        if words[1] not in counts:
+            counts[words[1]] = 1
+        else:
+            counts[words[1]] = counts[words[1]]+1
 
-print (counts)
+print(max(counts, key=counts.get), counts[max(counts, key=counts.get)])
