@@ -8,6 +8,8 @@ For each word, check to see if the word is already in a list.
 If the word is not in the list, add it to the list.
 """
 line_words = list()
+unique_words = list()
+
 fhand = open ("romeo.txt")
 for line in fhand:
     line = line.rstrip()
@@ -16,10 +18,9 @@ for line in fhand:
     line_words.append(words)
 
 #For each word, check if the word is already present
-unique_words = list()
-for lists in line_words:
-    for word in lists:
-        if word not in line_words:
+for list in line_words:
+    for word in list:
+        if word not in unique_words:
             unique_words.append(word)
 
 #sort and print the resulting words in alphabetical order
