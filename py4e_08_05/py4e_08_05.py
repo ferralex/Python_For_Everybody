@@ -27,7 +27,9 @@ emails = 0
 for line in fhand:
     line = line.rstrip()
     #search for lines starting with "From"
-    if line.startswith("From"):
+    if line.startswith("From:"):
+        continue
+    elif line.startswith("From"):
         #split the line into words
         email_from = line.split()
         #print and count the email addresses
